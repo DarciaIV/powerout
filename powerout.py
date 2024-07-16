@@ -75,11 +75,10 @@ def main(message):
             for area in key_list:
                 if next1 in schedule[weekday][area]:
                     if next1_area == "":
-                        next1_date_str = "" + str(now.year) + "," + str(now.month) + "," + str(now.day) + ":" + str(next1) + "-00"
-                        next1_date = datetime.datetime.strptime(next1_date_str, "%Y,%m,%d:%H-%M")
+                        next1_date_str = "" + str(now.year) + "," + str(now.month) + "," + str(now.day) + ":" + str(next1) + "-00" + ",+0300"
+                        next1_date = datetime.datetime.strptime(next1_date_str, "%Y,%m,%d:%H-%M,%z")
                         if offset == 1:
                             next1_date += datetime.timedelta(days=1)
-                        next1_date = next1_date.replace(tzinfo=pytz.timezone('Europe/Kiev'))
                         diff = next1_date - now
                         grand_message += "Now it is " + now_area.upper() + " zone, and it will be for another " + str(diff).split(".")[0] + ".\n"
                         grand_message += "Then it will be " + area.upper() + " zone, at " + str(next1) + ":00\n"
@@ -87,11 +86,10 @@ def main(message):
                         next1_hour = next1
                         key_list.remove(area)
                     else:
-                        next2_date_str = "" + str(now.year) + "," + str(now.month) + "," + str(now.day) + ":" + str(next1) + "-00"
-                        next2_date = datetime.datetime.strptime(next2_date_str, "%Y,%m,%d:%H-%M")
+                        next2_date_str = "" + str(now.year) + "," + str(now.month) + "," + str(now.day) + ":" + str(next1) + "-00" + ",+0300"
+                        next2_date = datetime.datetime.strptime(next2_date_str, "%Y,%m,%d:%H-%M,%z")
                         if offset == 1:
                             next2_date += datetime.timedelta(days=1)
-                        next2_date = next2_date.replace(tzinfo=pytz.timezone('Europe/Kiev'))
                         diff = next2_date - now
                         grand_message += "Next " + area.upper() + " will be in " + str(diff).split(".")[0] + ",at " + str(next1) + ":00."
                         next2_area = area
@@ -112,11 +110,10 @@ def main(message):
                     next1+=1
                 for area in key_list:
                     if next1 in schedule[weekday][area]: 
-                        next2_date_str = "" + str(now.year) + "," + str(now.month) + "," + str(now.day) + ":" + str(next1) + "-00"
-                        next2_date = datetime.datetime.strptime(next2_date_str, "%Y,%m,%d:%H-%M")
+                        next2_date_str = "" + str(now.year) + "," + str(now.month) + "," + str(now.day) + ":" + str(next1) + "-00" + ",+0300"
+                        next2_date = datetime.datetime.strptime(next2_date_str, "%Y,%m,%d:%H-%M,%z")
                         if offset == 1:
                             next2_date += datetime.timedelta(days=1)
-                        next2_date = next2_date.replace(tzinfo=pytz.timezone('Europe/Kiev'))
                         diff = next2_date - now
                         grand_message += "Next " + area.upper() + " will be in " + str(diff).split(".")[0] + ",at " + str(next1) + ":00."
                         next2_area = area
